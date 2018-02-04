@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello React</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<div id="app">
+			<!--app-->
+		</div>
+		<div id="nn">
+		</div>
+		<div id="mm">
+		</div>
+		<div id="aa">
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+		<script type="text/jsx">
+			//js for app
+			ReactDOM.render(
+				React.DOM.h1(
+					{id:"helllo-header"}, //属性
+					React.DOM.span(null, "hello world"), //子元素
+					React.DOM.span(null, React.DOM.em(null, " haha"))),//子元素2
+				document.getElementById("app")
+				);
+
+			ReactDOM.render(
+				<h1 id="my-heading">
+					<span><em>Hello</em>world</span>la
+				</h1>,
+				document.getElementById("nn")
+				);
+
+			ReactDOM.render(
+				React.DOM.h1({
+					style: {
+						background: 'black',
+						color: 'white',
+						fontFamily: 'Verdana'
+					}},
+					"Hello WXT"
+				),
+				document.getElementById("mm")
+			);
+			var Component=React.createClass({
+				render: function(){
+					return React.DOM.span(null, "I'm so custom");
+				}
+			});
+			ReactDOM.render(
+				<Component/>,
+				document.getElementById("aa");
+			);
+		</script>
+	</body>
+</html>
