@@ -14,7 +14,12 @@
 		</div>
 		<div id="aa">
 		</div>
-
+		<div id="bb">
+		</div>
+		<div id="cc">
+		</div>
+		<div id="dd">
+		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
@@ -53,7 +58,27 @@
 			});
 			ReactDOM.render(
 				<Component/>,
-				document.getElementById("aa");
+				document.getElementById("aa")
+			);
+			var ComponentFactory = React.createFactory(Component);
+			ReactDOM.render(
+				ComponentFactory(),
+				document.getElementById("bb")
+			)
+			var ComponentBb=React.createClass({
+				render: function(){
+					return React.DOM.span(null, "My name is" + this.props.name);
+				}
+			});
+			ReactDOM.render(
+				<ComponentBb name="wxt" />,
+				document.getElementById("cc")
+			);
+			ReactDOM.render(
+				React.createElement(ComponentBb, {
+					name: "Bob"
+				}),
+				document.getElementById("dd")
 			);
 		</script>
 	</body>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello React</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<div id="app1">
+			<!--app-->
+		</div>
+		<div id="app2">
+		</div>
+		<div id="app3">
+		</div>
+		<div id="app4">
+		</div>
+		<div id="app5">
+		</div>
+		<div id="app6">
+		</div>
+		<div id="app7">
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+		<script type="text/jsx">
+			//js for app
+		var Component1=React.createClass({
+			propTypes: {
+				name: React.PropTypes.string.isRequired
+			},
+			render: function(){
+				return React.DOM.span(null, "My name is" + this.props.name);
+			}
+		});
+		ReactDOM.render(
+			React.createElement(Component1, {
+				name: "wwwei"
+			}),
+			document.getElementById("app1")
+		)
+
+		var Component2=React.createClass({
+			propTypes: {
+				firstName: React.PropTypes.string.isRequired,
+				middleName: React.PropTypes.string,
+				familyName: React.PropTypes.string.isRequired,
+				address: React.PropTypes.string
+			},
+			getDefaultProps: function(){
+				return {
+					middleName: '',
+					address: 'n/a'	
+				};
+			},
+			render: function(){
+				return <span>{this.props.firstName} {this.props.middleName} {this.props.familyName} {this.props.address}</span>;
+			}
+
+		});
+		ReactDOM.render(React.createElement(Component2, {
+			firstName: "Niu",
+			familyName: "Ye"
+		}),
+		document.getElementById("app2"));
+
+		var TextAreaCounter = React.createClass({
+			propTypes: {
+				text: React.PropTypes.string
+			},
+			getDefaultProps: function(){
+				return {
+					text: ''
+				};
+			},
+			render: function(){
+				return React.DOM.div(null,
+					React.DOM.textarea(
+						{defaultValue: this.props.text}
+					),
+					React.DOM.h3(null,
+						this.props.text.length
+					)
+				);
+			}	
+		});
+		ReactDOM.render(
+			<TextAreaCounter text="Bob "/>,
+			document.getElementById("app3")
+		)
+		</script>
+	</body>
+</html>
