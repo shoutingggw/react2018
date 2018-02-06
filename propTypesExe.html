@@ -88,6 +88,40 @@
 			<TextAreaCounter text="Bob "/>,
 			document.getElementById("app3")
 		)
+
+		var TextCounter1 = React.createClass({
+			propTypes: {
+				text: React.PropTypes.string
+			},
+			getInitialState: function(){
+				return {
+					text: this.props.text
+				}
+			},
+			_textChange: function(event){
+				this.setState({
+					text: event.target.value
+				});
+			},
+			render: function(){
+				return React.DOM.div(null,
+					React.DOM.textarea({
+						value: this.state.text,
+						onChange: this._textChange
+					}),
+					React.DOM.h3(null, this.state.text.length)
+				);
+			}
+		});
+		ReactDOM.render(
+			React.createElement(
+				TextCounter1,
+				{
+					text: "BBBBB"
+				}
+			),
+			document.getElementById("app4")
+		);
 		</script>
 	</body>
 </html>
