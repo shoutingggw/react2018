@@ -22,6 +22,7 @@
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.1/react-with-addons.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 		<script type="text/jsx">
 			//js for app
@@ -169,6 +170,9 @@
 			propTypes: {
 				count: React.PropTypes.number.isRequired
 			},
+			shouldComponentUpdate(nextProps, nextState_ignore){
+				return nextProps.count !== this.props.count;
+			},
 			render: function(){
 				return React.DOM.span(null, this.props.count);
 			}
@@ -215,6 +219,56 @@
 			document.getElementById("app6")
 		)
 
+		var CounterX = React.createClass({
+			name: "CounterX",
+			mixins: [React.addons.PureRenderMixin],
+			propTypes: {
+				count: React.PropTypes.number.isRequired
+			},
+			render: function(){
+				console.log(this.name + "::render()");
+				return React.DOM.span(null, this.props.count);
+			}	
+		});
+		var CounterTextArea = React.createClass({
+			name: "CounterTextArea",
+			mixins: null,
+			propTypes: React.PropTypes.string.isRequired,
+			getInitialState: function(){
+				return {
+					text: this.props.defaultValue
+				};
+			},
+			_onChange: function(event){
+				this.setState({
+					text: event.target.value
+				});
+			},
+/*			shouldComponentUpdate: function(newState, oldState){
+				return newState !== oldState;
+			},*/
+			render: function(){
+				console.log(this.name + "::render()");
+				var counterx = null;
+				if(this.state.text.length > 0){
+					counterx = React.DOM.h3(null,
+						React.createElement(CounterX,{
+							count: this.state.text.length
+						})
+					);
+				}
+				return React.DOM.div(null,
+					React.DOM.textarea({
+						onChange: this._onChange,
+						value: this.state.text
+					}),
+					counterx
+				);
+			}
+		});
+		ReactDOM.render(
+			React.createElement(CounterTextArea, {defaultValue: ""}), 
+			document.getElementById("app7"));
 		</script>
 	</body>
 </html>
